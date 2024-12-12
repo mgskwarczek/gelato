@@ -1,0 +1,43 @@
+.login-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding-top: 40px;
+  box-sizing: border-box;
+}
+
+.login-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  min-width: 25%;
+  max-width: 40%;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  margin-bottom: 5%;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.login-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #df7373;
+  color: #333;
+  font-weight: bold;
+}
+
+.forgot-password {
+  display: block;
+  margin-top: 5%;
+  font-size: 90%;
+  color: #1959bd;
+  text-decoration: none;
+}

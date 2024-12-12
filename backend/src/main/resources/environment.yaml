@@ -1,0 +1,12 @@
+environment:
+  database:
+    type: POSTGRESQL
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/gelatoflow
+    username: postgres
+    password: 9844
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+  jwt:
+    secret: "omega-complex-secret"
+    expiration: 7000
+

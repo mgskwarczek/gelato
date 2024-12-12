@@ -1,0 +1,11 @@
+<!doctype html>
+<div class="input-group">
+  <label [for]="inputId">{{ label }}</label>
+  <input
+    [id]="inputId"
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($event)"
+  />
+</div>
