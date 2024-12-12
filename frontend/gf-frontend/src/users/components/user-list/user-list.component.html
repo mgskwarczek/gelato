@@ -1,0 +1,67 @@
+<!doctype html>
+<div class="user-list-container">
+  <div class="table-container">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Creation Date</th>
+          <th>Modification Date</th>
+          <th>Deletion Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.roleName }}</td>
+          <td>{{ user.creationDate | date: "yyyy-MM-dd HH:mm" }}</td>
+          <td>{{ user.modificationDate | date: "yyyy-MM-dd HH:mm" }}</td>
+          <td>{{ user.deletionDate | date: "yyyy-MM-dd HH:mm" }}</td>
+          <td>
+            <button class="icon-button tooltip" (click)="onEditClick(user.id!)">
+              <fa-icon [icon]="faEdit"></fa-icon>
+              <span class="tooltiptext">Edit user</span>
+            </button>
+            <button
+              class="icon-button tooltip"
+              (click)="onDeleteClick(user.id!)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+              <span class="tooltiptext">Delete user</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="paginator-button-container">
+    <div class="button-add-user">
+      <app-button
+        label="Add user"
+        buttonClass="button-add"
+        (click)="navigateToCreateUser()"
+      >
+      </app-button>
+    </div>
+  </div>
+
+  <app-popup
+    [isVisible]="isPopupVisible"
+    popupTitle="Confirm Deletion"
+    [message]="
+      'Are you sure you want to delete user with ID: ' + selectedUserId + '?'
+    "
+    (onConfirm)="confirmDelete()"
+    (onClose)="closePopup()"
+  >
+  </app-popup>
+</div>

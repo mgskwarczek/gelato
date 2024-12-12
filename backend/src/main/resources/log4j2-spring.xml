@@ -22,12 +22,12 @@
 			<AppenderRef ref="AppFileAppender"/>
 		</Root>
 
-		<Logger name="com.gelatoflow.gelatoflow_api.controller" level="DEBUG" additivity="false">
+		<Logger name="com.gelatoflow.controller" level="DEBUG" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="RequestFileAppender"/>
 		</Logger>
 
-		<Logger name="com.gelatoflow.gelatoflow_api.service" level="DEBUG" additivity="false">
+		<Logger name="com.gelatoflow.service" level="DEBUG" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="RequestFileAppender"/>
 		</Logger>

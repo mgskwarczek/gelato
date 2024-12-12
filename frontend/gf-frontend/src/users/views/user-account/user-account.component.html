@@ -1,0 +1,49 @@
+<!doctype html>
+
+<app-nav-bar></app-nav-bar>
+<app-side-bar></app-side-bar>
+<div class="main-content">
+  <div class="user-account-container">
+    <div class="user-info-container">
+      <h2>My Profile</h2>
+      <div class="avatar-container">
+        <fa-icon [icon]="faUserCircle"></fa-icon>
+      </div>
+      <div class="role-container">
+        <h3>{{ user?.roleName }}</h3>
+      </div>
+      <div class="user-info">
+        <p><strong>First Name:</strong> {{ user?.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ user?.lastName }}</p>
+        <p><strong>Email:</strong> {{ user?.email }}</p>
+        <app-button
+          label="Change Password"
+          buttonClass="button"
+          (click)="onChangePassword()"
+        >
+        </app-button>
+      </div>
+    </div>
+
+    <div class="user-teams-container">
+      <h2>My Teams</h2>
+      <div class="search-container">
+        <input
+          type="teams"
+          placeholder="Enter team name"
+          [(ngModel)]="searchTerm"
+        />
+        <app-button
+          label="Search"
+          buttonClass="button"
+          (click)="onSearchTeams()"
+        >
+        </app-button>
+      </div>
+
+      <ul class="team-list">
+        <li *ngFor="let team of teams">{{ team.name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

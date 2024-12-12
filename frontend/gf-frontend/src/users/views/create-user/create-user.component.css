@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+}
+
+.header h1 {
+  font-size: 22px;
+  font-weight: bold;
+  color: black;
+}
+
+.create-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 90vh;
+  margin-left: 80px;
+  overflow: hidden;
+  max-width: 600px;
+  margin-top: 1%;
+}
+
+.inputs {
+  background-color: #ffffff;
+  padding: 8px 20px 8px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 500px;
+  text-align: left;
+  font-weight: bold;
+}
+.inputs input {
+  max-width: 100%;
+}
+
+.create-container .buttons {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+
+.form {
+  width: 150%;
+}

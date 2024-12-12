@@ -1,0 +1,301 @@
+<app-side-bar></app-side-bar>
+<app-nav-bar></app-nav-bar>
+
+<div class="header-container">
+  <h1>Manage your ice cream shop: {{ selectedShop?.name }}</h1>
+  <app-button
+    label="Add new shop"
+    buttonClass="button-add"
+    (click)="showAddShopPopup()"
+  >
+    Add new shop
+  </app-button>
+</div>
+<div class="main-content">
+  <div class="shops-container">
+    <div class="shop-container">
+      <h3>Ice cream shops</h3>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Enter your shop name"
+          [(ngModel)]="shopName"
+          (input)="search(shopName)"
+        />
+        <app-button
+          label="Search"
+          buttonClass="button"
+          (click)="searchShop(shopName)"
+        >
+        </app-button>
+      </div>
+      <ul class="shop-list">
+        <li
+          *ngFor="let shop of shops"
+          (click)="selectShop(shop)"
+          [ngClass]="{ selected: isSelected(shop) }"
+        >
+          <div class="shop-info">
+            <span class="shop-name">{{ shop.name }} </span>
+            <div class="shop-actions">
+              <button
+                class="icon-button tooltip"
+                (click)="showShopInfo(shop, $event)"
+              >
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+                <span class="tooltiptext">Shop Info</span>
+              </button>
+              <button
+                class="icon-button tooltip"
+                (click)="showEditPopup(shop, $event)"
+              >
+                <fa-icon [icon]="faEdit"></fa-icon>
+                <span class="tooltiptext">Edit shop</span>
+              </button>
+              <button
+                class="icon-button tooltip"
+                (click)="showShopDeletePopup(shop, $event)"
+              >
+                <fa-icon [icon]="faTrash"></fa-icon>
+                <span class="tooltiptext">Delete shop</span>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="user-container">
+      <div class="tabs">
+        <button
+          class="tab-button active"
+          [ngClass]="{ active: activeTab === 'employees' }"
+          (click)="selectTab('employees')"
+        >
+          Employees
+        </button>
+        <button
+          class="tab-button"
+          [ngClass]="{ active: activeTab === 'not-in-shop' }"
+          (click)="selectTab('not-in-shop')"
+        >
+          Employees Not in Shop
+        </button>
+      </div>
+
+      <div class="tab-content" *ngIf="activeTab === 'employees'">
+        <div class="employees-section">
+          <div class="search-container">
+            <input
+              type="text"
+              placeholder="Enter the user's first name"
+              [(ngModel)]="firstName"
+              (input)="searchEmployees()"
+            />
+            <input
+              type="text"
+              placeholder="Enter the user's last name"
+              [(ngModel)]="lastName"
+              (input)="searchEmployees()"
+            />
+            <input
+              type="text"
+              placeholder="Enter the user's email"
+              [(ngModel)]="email"
+              (input)="searchEmployees()"
+            />
+            <app-button
+              label="Search"
+              buttonClass="button"
+              (click)="
+                selectedShop?.id &&
+                  searchEmployees(
+                    selectedShop?.id,
+                    firstName,
+                    lastName,
+                    email
+                  )
+              "
+            ></app-button>
+          </div>
+          <div *ngIf="!selectedShop" class="no-shop-selected">
+            <p>Please choose your shop to see the employees.</p>
+          </div>
+
+          <div *ngIf="selectedShop">
+            <div *ngIf="selectedEmployees.length === 0" class="no-employees">
+              <p>This shop has no employees.</p>
+            </div>
+
+            <div *ngIf="selectedShop">
+              <ul class="employees-list">
+                <li *ngFor="let employees of selectedEmployees">
+                  {{ employee.firstName }} {{ employee.lastName }}
+                  <app-button
+                    label="Remove"
+                    buttonClass="button-delete"
+                    (click)="showDeletePopup(employee)"
+                  ></app-button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" *ngIf="activeTab === 'not-in-shop'">
+        <div class="username-section">
+          <div class="search-container">
+            <input
+              type="text"
+              placeholder="Enter the user's first name"
+              [(ngModel)]="firstName"
+              (input)="searchNonEmployees()"
+            />
+            <input
+              type="text"
+              placeholder="Enter the user's last name"
+              [(ngModel)]="lastName"
+              (input)="searchNonEmployees()"
+            />
+            <input
+              type="text"
+              placeholder="Enter the user's email"
+              [(ngModel)]="email"
+              (input)="searchNonEmployees()"
+            />
+            <app-button
+              label="Search"
+              buttonClass="button"
+              (click)="
+                selectedShop?.id &&
+                  searchUsersNotInShop(
+                    selectedShop?.id,
+                    firstName,
+                    lastName,
+                    email
+                  )
+              "
+            ></app-button>
+          </div>
+          <div *ngIf="selectedShop">
+            <ul class="username-list">
+              <li *ngFor="let employee of employeesNotInShop">
+                {{ employee.firstName }} {{ employee.lastName }}
+                <app-button
+                  label="Add"
+                  buttonClass="button-add"
+                  (click)="showAddPopup(employee)"
+                ></app-button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-popup
+  *ngIf="isDeletePopupVisible"
+  [isVisible]="isDeletePopupVisible"
+  popupTitle="Confirm Deletion"
+  [message]="
+    'Are you sure you want to delete ' +
+    selectedUser?.firstName +
+    ' ' +
+    selectedUser?.lastName +
+    ' from shop: ' +
+    selectedShop?.name +
+    '?'
+  "
+  (onConfirm)="deleteUser()"
+  (onClose)="closeDeletePopup()"
+>
+</app-popup>
+
+<app-popup
+  *ngIf="isAddPopupVisible"
+  [isVisible]="isAddPopupVisible"
+  popupTitle="Confirm Addition"
+  [message]="
+    'Are you sure you want to add ' +
+    selectedUser?.firstName +
+    ' ' +
+    selectedUser?.lastName +
+    ' to the shop: ' +
+    selectedShop?.name +
+    '?'
+  "
+  (onConfirm)="addUser()"
+  (onClose)="closeAddPopup()"
+>
+</app-popup>
+
+<app-popup
+  *ngIf="isShopInfoPopupVisible"
+  [isVisible]="isShopInfoPopupVisible"
+  popupTitle="Shop Info"
+  [message]="'Details of the selected shop'"
+  [showActions]="showPopupActions"
+  (onClose)="closeShopInfoPopup()"
+>
+  <div *ngIf="selectedShopForInfo">
+    <p><strong>ID:</strong> {{ selectedShopForInfo.id }}</p>
+    <p><strong>Name:</strong> {{ selectedShopForInfo.name }}</p>
+    <p>
+      <strong>Creation Date:</strong>
+      {{ selectedShopForInfo.creationDate | date: "yyyy-MM-dd HH:mm:ss" }}
+    </p>
+    <p>
+      <strong>Modification Date:</strong>
+      {{ selectedShopForInfo.modificationDate | date: "yyyy-MM-dd HH:mm:ss" }}
+    </p>
+    <p>
+      <strong>Deletion Date:</strong>
+      {{ selectedShopForInfo.deletionDate | date: "yyyy-MM-dd HH:mm:ss" }}
+    </p>
+  </div>
+</app-popup>
+
+<app-popup
+  *ngIf="isEditShopPopupVisible"
+  [isVisible]="isEditShopPopupVisible"
+  popupTitle="Edit Shop"
+  [message]="'Shop ID: ' + shopToEdit?.id"
+  [showActions]="showPopupActions"
+  (onConfirm)="confirmEdit()"
+  (onClose)="closeEditPopup()"
+>
+  <div *ngIf="isShopEditMode">
+    <label for="shopName">Shop name: </label>
+    <input id="shopName" [(ngModel)]="shopName" />
+  </div>
+</app-popup>
+
+<app-popup
+  *ngIf="isShopDeletePopupVisible"
+  [isVisible]="isShopDeletePopupVisible"
+  popupTitle="Confirm Deletion"
+  [message]="
+    'Are you sure you want to delete shop: ' + shopToDelete?.name + '?'
+  "
+  [showActions]="true"
+  (onConfirm)="confirmDelete()"
+  (onClose)="closeDeletePopup()"
+>
+</app-popup>
+
+<app-popup
+  *ngIf="isAddShopPopupVisible"
+  [isVisible]="isAddShopPopupVisible"
+  popupTitle="Create shop"
+  [showActions]="true"
+  (onConfirm)="addShop()"
+  (onClose)="closeAddShopPopup()"
+>
+  <div>
+    <label for="newShop">Shop name: </label>
+    <input id="newShop" [(ngModel)]="newShop" />
+  </div>
+</app-popup>

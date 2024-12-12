@@ -1,0 +1,74 @@
+.user-account-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+  width: 100%;
+}
+
+.user-info-container,
+.user-teams-container {
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 48%;
+  height: auto;
+  overflow: hidden;
+}
+
+.user-info-container h2,
+.user-teams-container h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 150px;
+  margin-top: 5%;
+}
+
+.user-info-container h3 {
+  font-size: 22px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.user-info p {
+  font-size: 18px;
+  margin: 10px 0;
+  margin-bottom: 4%;
+}
+
+.search-container {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 5%;
+}
+
+.search-container input {
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 100%;
+}
+
+.team-list {
+  list-style-type: none;
+  padding: 0;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.team-list li {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.team-list li:hover {
+  background-color: #f0f0f5;
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<app-side-bar></app-side-bar>
+<app-nav-bar></app-nav-bar>
+
+<div class="create-container">
+  <form class="form" [formGroup]="updateUserForm" (ngSubmit)="showPopup()">
+    <div class="inputs">
+      <div class="header">
+        <h1>Edit user</h1>
+        <h3>User ID: {{ userId }}</h3>
+      </div>
+
+      <app-input-group
+        label="First name"
+        name="firstName"
+        inputId="firstName"
+        type="text"
+        placeholder="Enter user first name"
+        formControlName="firstName"
+      >
+      </app-input-group>
+
+      <app-input-group
+        label="Last name"
+        name="lastName"
+        inputId="lastName"
+        type="text"
+        placeholder="Enter user last name"
+        formControlName="lastName"
+      >
+      </app-input-group>
+
+      <app-input-group
+        label="Email"
+        name="email"
+        inputId="email"
+        type="text"
+        placeholder="Enter user email"
+        formControlName="email"
+      >
+      </app-input-group>
+      <app-dropdown
+        label="Role"
+        [options]="roles"
+        dropdownId="roleDropdown"
+        [idKey]="'id'"
+        [nameKey]="'name'"
+        formControlName="roleId"
+      >
+      </app-dropdown>
+    </div>
+
+    <div class="buttons">
+      <app-button
+        label="Cancel"
+        buttonClass="button-delete"
+        (click)="navigateToAdminPanel()"
+      >
+      </app-button>
+      <app-button label="Save" buttonClass="button-add" type="submit">
+      </app-button>
+    </div>
+  </form>
+</div>
+<app-popup
+  [isVisible]="isPopupVisible"
+  popupTitle="Edit user"
+  message="Are you sure you want to edit this user?"
+  (onConfirm)="confirmPopup()"
+  (onClose)="closePopup()"
+>
+</app-popup>

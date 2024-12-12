@@ -1,0 +1,70 @@
+.container {
+  max-height: 75vh;
+  overflow-y: auto;
+  min-width: 90vw;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.card-text {
+  margin-left: 1rem;
+}
+
+.mat-card-header {
+  background-color: #f8f9fa;
+}
+
+.mat-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  font-size: 1rem;
+  color: #555;
+}
+
+.change-item {
+  border-bottom: 1px solid #ddd;
+  padding: 0.625rem;
+}
+
+.change-header {
+  font-weight: bold;
+  margin-bottom: 0.3125rem;
+}
+
+.change-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.change-old-value,
+.change-new-value {
+  flex: 1 1 0;
+  padding: 0.625rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.change-old-value {
+  background-color: #f8f9fa;
+}
+
+.change-new-value {
+  background-color: #e9ecef;
+}
+
+.change-old-value p,
+.change-new-value p {
+  margin: 0;
+}

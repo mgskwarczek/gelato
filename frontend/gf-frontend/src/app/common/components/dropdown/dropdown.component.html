@@ -1,0 +1,10 @@
+<!doctype html>
+<div class="dropdown-group">
+  <label [for]="dropdownId">{{ label }}</label>
+  <select [id]="dropdownId" (change)="onSelectChange($event)" [value]="value">
+    <option value="">Please select</option>
+    <option *ngFor="let option of options" [value]="option[idKey]">
+      {{ option[nameKey] }}
+    </option>
+  </select>
+</div>

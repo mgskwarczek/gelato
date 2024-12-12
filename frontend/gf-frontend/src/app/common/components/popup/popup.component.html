@@ -1,0 +1,22 @@
+<!doctype html>
+<div class="popup-overlay" *ngIf="isVisible">
+  <div class="popup-content">
+    <button class="close-button" (click)="closePopup()">
+      <fa-icon [icon]="faTimes" aria-hidden="true"></fa-icon>
+    </button>
+
+    <h3>{{ popupTitle }}</h3>
+    <p>{{ message }}</p>
+
+    <ng-content></ng-content>
+
+    <div class="popup-actions" *ngIf="showActions">
+      <app-button
+        buttonClass="button-add"
+        label="Confirm"
+        (click)="confirmPopup()"
+      >
+      </app-button>
+    </div>
+  </div>
+</div>

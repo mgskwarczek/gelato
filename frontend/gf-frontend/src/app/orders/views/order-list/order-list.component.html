@@ -1,0 +1,68 @@
+<div class="orders-container">
+    <app-nav-bar></app-nav-bar>
+    <div class="content">
+      <div class="sidebar">
+        <app-side-bar></app-side-bar>
+      </div>
+      <div class="main">
+        <div class="header">
+          <h1>Orders</h1>
+          <button mat-raised-button color="primary" class="create-order-btn">
+            Create new order
+          </button>
+        </div>
+        <div class="filter">
+          <div>
+            <label for="shop-title">Shop title</label>
+            <input id="shop-title" type="text" matInput placeholder="Shop title">
+          </div>
+          <div>
+            <label for="shop-location">Shop location</label>
+            <input id="shop-location" type="text" matInput placeholder="Shop location">
+          </div>
+          <div>
+            <label for="order-title">Order title</label>
+            <input id="order-title" type="text" matInput placeholder="Order title">
+          </div>
+          <button mat-raised-button color="accent">Search</button>
+        </div>
+        <div class="table-container">
+          <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+            <ng-container matColumnDef="orderTitle">
+              <th mat-header-cell *matHeaderCellDef> Order title </th>
+              <td mat-cell *matCellDef="let order"> {{order.title}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="shopName">
+              <th mat-header-cell *matHeaderCellDef> Shop name </th>
+              <td mat-cell *matCellDef="let order"> {{order.shopName}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="shopLocation">
+              <th mat-header-cell *matHeaderCellDef> Shop location </th>
+              <td mat-cell *matCellDef="let order"> {{order.shopLocation}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="priority">
+              <th mat-header-cell *matHeaderCellDef> Priority </th>
+              <td mat-cell *matCellDef="let order"> {{order.priority}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let order"> {{order.status}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="creationDate">
+              <th mat-header-cell *matHeaderCellDef> Creation date </th>
+              <td mat-cell *matCellDef="let order"> {{order.creationDate | date}} </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

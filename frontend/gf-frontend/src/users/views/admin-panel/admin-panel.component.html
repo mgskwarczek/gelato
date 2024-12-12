@@ -1,0 +1,148 @@
+<!doctype html>
+
+<app-nav-bar></app-nav-bar>
+<app-side-bar></app-side-bar>
+<div class="main-content">
+  <div class="search-container">
+    <div class="header">
+      <h1>All users</h1>
+    </div>
+
+    <div class="search-content">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="search-criteria">
+          <app-input-group
+            label="First name"
+            inputId="firstName"
+            type="firstName"
+            placeholder="Enter first name"
+            formControlName="firstName"
+          >
+          </app-input-group>
+
+          <app-input-group
+            label="Last name"
+            name="lastName"
+            inputId="lastName"
+            type="lastName"
+            placeholder="Enter last name"
+            formControlName="lastName"
+          >
+          </app-input-group>
+
+          <app-input-group
+            label="Email"
+            name="email"
+            inputId="email"
+            type="email"
+            placeholder="Enter email adress"
+            formControlName="email"
+          >
+          </app-input-group>
+          <app-dropdown
+            label="Role"
+            [options]="roles"
+            dropdownId="roleDropdown"
+            [idKey]="'id'"
+            [nameKey]="'name'"
+            formControlName="roleId"
+            (change)="onRoleChange($event)"
+          >
+          </app-dropdown>
+        </div>
+
+        <div class="filters-container">
+          <div class="date-filters">
+            <div class="date-filter-group">
+              <label for="creationDate">Creation Date</label>
+              <div class="date-filter">
+                <app-input-group
+                  label="From"
+                  name="dateFrom"
+                  inputId="date"
+                  type="date"
+                  formControlName="creationLowerDate"
+                >
+                </app-input-group>
+                <app-input-group
+                  label="To"
+                  name="dateTo"
+                  inputId="dateTo"
+                  type="date"
+                  formControlName="creationUpperDate"
+                >
+                </app-input-group>
+              </div>
+            </div>
+
+            <div class="date-filter-group">
+              <label for="modificationDate">Modification Date</label>
+              <div class="date-filter">
+                <app-input-group
+                  label="From"
+                  name="dateFrom"
+                  inputId="date"
+                  type="date"
+                  formControlName="modificationLowerDate"
+                >
+                </app-input-group>
+                <app-input-group
+                  label="To"
+                  name="dateTo"
+                  inputId="dateTo"
+                  type="date"
+                  formControlName="modificationUpperDate"
+                >
+                </app-input-group>
+              </div>
+            </div>
+
+            <div class="date-filter-group">
+              <label for="deletionDate">Deletion Date</label>
+              <div class="date-filter">
+                <app-input-group
+                  label="From"
+                  name="dateFrom"
+                  inputId="date"
+                  type="date"
+                  formControlName="deletionLowerDate"
+                >
+                </app-input-group>
+                <app-input-group
+                  label="To"
+                  name="dateTo"
+                  inputId="dateTo"
+                  type="date"
+                  formControlName="deletionUpperDate"
+                >
+                </app-input-group>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="search-button">
+          <app-button label="Search" buttonClass="button"> </app-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="user-list-container">
+    <app-user-list
+      class="custom-user-list"
+      [users]="users"
+      (editUser)="onEditUser($event)"
+      (deleteUser)="onDeleteUser($event)"
+      (userDeleted)="loadUsers()"
+    ></app-user-list>
+
+    <mat-paginator
+      [length]="totalUsers"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageEvent($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

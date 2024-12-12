@@ -1,0 +1,97 @@
+.user-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: auto;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.table-container {
+  height: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: auto;
+  margin: 0;
+}
+
+.users-table th,
+.users-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  word-wrap: none;
+  text-align: left;
+}
+.users-table th {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background-color: #0062b7;
+  color: white;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px;
+  color: #007bff;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 2px;
+  position: absolute;
+  z-index: 1000;
+  top: 50%;
+  left: 90%;
+  transform: translateY(-50%);
+  white-space: wrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  overflow: visible;
+}
+
+.icon-button:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.paginator-button-container {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: baseline;
+}
+
+.button-add-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.users-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
